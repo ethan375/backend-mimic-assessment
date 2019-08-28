@@ -49,8 +49,15 @@ import sys
 
 def mimic_dict(filename):
     """Returns mimic dict mapping each word to list of words which follow it."""
-    # +++your code here+++
-    raise NotImplementedError("Get to Work!")
+    alice = open(sys.argv[1], "r+")
+    open_alice = alice.read()
+    open_alice = open_alice.strip()
+    alice_list = open_alice.split(' ')
+    alice_dict = {}
+    for i, word in enumerate(alice_list):
+        current_index = alice_list.index(word, i)
+        alice_dict.update({word: alice_list[current_index:]})
+    return alice_dict
 
 
 def print_mimic(mimic_dict, word):
@@ -61,8 +68,19 @@ def print_mimic(mimic_dict, word):
         - Randomly select a new seed word from this word list
         - Repeat this process 200 times
     """
-    # +++your code here+++
-    raise NotImplementedError("Get to Work!")
+    seed_word = ''
+    i = 0
+    while i <= 200:
+        random_num = random.randint(0,2)
+        if i == 0:
+            random_word = mimic_dict[seed_word][random_num]
+        else:
+            random_word = mimic_dict[random_word][max_num]
+        print random_word
+        i += 1
+        
+        
+    
 
 
 # Provided main(), calls mimic_dict() and mimic()
